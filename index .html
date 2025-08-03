@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <title>2027/2026 A/L TECH ලියාපදිංචිය</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&display=swap');
+    body {
+      font-family: 'Noto Sans Sinhala', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      padding: 40px 10px;
+    }
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    }
+    h2, h3 {
+      text-align: center;
+      color: #004d40;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background-color: #25D366;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #1da851;
+    }
+    .image-banner {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .image-banner img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="image-banner">
+    <img src="https://example.com/banner.jpg" alt=" Banner">
+  </div>
+  <h2>- A/L TECH -</h2>
+  <h3>2027/2026 සඳහා ලියාපදිංචි වන්න</h3>
+  <form onsubmit="submitForm(event)">
+    <label>ඔබේ නම:</label>
+    <input type="text" id="name" required>
+
+    <label>දුරකථන අංකය (07XXXXXXXX):</label>
+    <input type="tel" id="phone" required>
+
+    <label>පාසලේ නම:</label>
+    <input type="text" id="school" required>
+
+    <label>A/L වර්ෂය:</label>
+    <select id="year" required>
+      <option value="">--2026/2027 තෝරන්න--</option>
+      <option value="2027">2027</option>
+      <option value="2026">2026</option>
+    </select>
+
+    <button type="submit">ලියාපදිංචි වන්න</button>
+  </form>
+</div>
+
+<script>
+  function submitForm(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const school = document.getElementById("school").value.trim();
+    const year = document.getElementById("year").value;
+
+    // 🛑 Validation - නම
+    if (name.length < 2 || !/^[\u0D80-\u0DFFa-zA-Z\s]+$/.test(name)) {
+      alert("කරුණාකර සත්‍ය නමක් ඇතුළත් කරන්න");
+      return;
+    }
+
+    // 🛑 Validation - දුරකථන අංකය
+    if (!/^07\d{8}$/.test(phone)) {
+      alert("දුරකථන අංකය 07XXXXXXXX ආකාරයෙන් ඇතුළත් කරන්න");
+      return;
+    }
+
+    // 🛑 Validation - පාසලේ නම
+    if (school.length < 4) {
+      alert("කරුණාකර සත්‍ය පාසල් නමක් ඇතුළත් කරන්න");
+      return;
+    }
+
+    // ✅ Message සහ WhatsApp group එකට යවන්න
+    const message = `මම (${name}) (${school}) පාසලෙන්, (${year}) A/L TECH සඳහා ලියාපදිංචි වීමට කැමතියි.`;
+    const encodedMsg = encodeURIComponent(message);
+
+    let whatsappURL = "";
+
+    if (year === "2027") {
+      whatsappURL = `https://chat.whatsapp.com/JoYby9GU6S7A82r6eqeREn?mode=ac_t`; // මෙතන ඔබේ actual group link එක
+    } else if (year === "2026") {
+      whatsappURL = `https://chat.whatsapp.com/ICgXUHBnUf23wYe0Sv2T7Z?mode=ac_t`; // මෙතන ඔබේ actual group link එක
+    } else {
+      whatsappURL = `https://wa.me/94771884088?text=${encodedMsg}`;
+    }
+
+    window.location.href = whatsappURL;
+  }
+</script>
+
+</body>
+</html>
